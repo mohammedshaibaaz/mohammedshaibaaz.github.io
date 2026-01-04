@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Vertical Side Nav with Zoom Hover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;600;700&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+
+<body>
+  
+
+    <!-- TOP NAV -->
+    <div class="header-top" role="banner" aria-label="Top navigation">
+      <div class="brand">
+        <div class="logo">FD</div>
+        <div>
+          <div class="title">MOHAMMED SHAIBAAZ UDDIN</div>
+          <div class="sub">Design · Frontend · Web</div>
+        </div>
+      </div>
+
+      <nav class="top-links" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        
+        <a href="#about">About</a>
+        <a class="cta" href="#contact">Contact</a>
+      </nav>
+    </div>
+
+
+    <!-- ===============================
+     MOBILE HEADER (LOGO ONLY)
+     =============================== -->
+
+<!-- ===============================
+     MOBILE NAV TRIGGER
+     =============================== -->
+<button class="mobile-nav-trigger" aria-label="Open menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<!-- ===============================
+     MOBILE NAV OVERLAY
+     =============================== -->
+<div class="mobile-nav-overlay" aria-hidden="true"></div>
+
+<!-- ===============================
+     MOBILE NAV DRAWER
+     =============================== -->
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#projects">Selected Works</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li class="secondary"><a href="#">Resume</a></li>
+  </ul>
+</nav>
+
+
+<div class="container">
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+  <div class="hero-content">
+    <h1>Intuitive interfaces, effortless experiences.</h1>
+    <p class="lead">
+UI design and frontend development focused on clean structure, consistent layouts, and ease of use.
+    </p>
+    <a href="#projects" class="btn">View selected work</a>
+  </div>
+</section>
+
+
+<section class="selected-works" id="projects" aria-labelledby="projects-title">
+  <div class="container">
+
+    <header class="section-header">
+      <h2 id="projects-title">Selected Works</h2>
+    </header>
+
+    <!-- =====================
+         PROJECT 01 — VELTRIN
+         ===================== -->
+    <article class="work-item">
+      <a
+        href="https://mohammedshaibaaz.github.io/veltrin-luxury-watch-website/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="work-image"
+        aria-label="View VELTRIN live website"
+      >
+        <img
+          src="./veltrin.png"
+          loading="lazy"
+          alt="VELTRIN luxury watch brand website preview"
+        />
+      </a>
+
+      <div class="work-content">
+        <h3>VELTRIN — Luxury Watch Brand Website</h3>
+
+        <p class="work-description">
+          A premium concept website designed for a high-end mechanical watch brand,
+          focused on refined visuals, smooth interactions, and a luxury-driven user experience.
+        </p>
+
+        <div class="work-block">
+          <h4>Objective</h4>
+          <p>
+            To create a digital presence that reflects craftsmanship, precision,
+            and timeless design while maintaining clarity and usability across devices.
+          </p>
+        </div>
+
+        <div class="work-block">
+          <h4>What I Did</h4>
+          <ul>
+            <li>Designed and developed a clean, luxury-focused frontend layout</li>
+            <li>Implemented smooth animations and transitions to enhance visual depth</li>
+            <li>Built a fully responsive structure for desktop and mobile devices</li>
+            <li>Focused on typography, spacing, and visual hierarchy for a premium feel</li>
+          </ul>
+        </div>
+
+        <div class="work-meta">
+          <span class="tech">HTML</span>
+          <span class="tech">CSS</span>
+          <span class="tech">JavaScript</span>
+        </div>
+
+        <p class="work-result">
+          A polished luxury website concept that demonstrates strong frontend fundamentals,
+          attention to detail, and UI/UX sensibility.
+        </p>
+
+        <div class="work-links">
+          <a href="https://mohammedshaibaaz.github.io/veltrin-luxury-watch-website/" target="_blank" rel="noopener noreferrer">
+            View Live
+          </a>
+          <a href="https://github.com/mohammedshaibaaz/veltrin-luxury-watch-website/" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- =====================
+         PROJECT 02 — AURIVANE
+         ===================== -->
+    <article class="work-item">
+      <a
+        href="https://mohammedshaibaaz.github.io/aurivane-editorial-fragrance-site/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="work-image"
+        aria-label="View AURIVANE live website"
+      >
+        <img
+          src="./aurivane.png"
+          loading="lazy"
+          alt="AURIVANE luxury fragrance brand website preview"
+        />
+      </a>
+
+      <div class="work-content">
+        <h3>AURIVANE — Luxury Fragrance Brand Website</h3>
+
+        <p class="work-description">
+          A concept website created for a luxury fragrance brand, emphasizing minimal design,
+          mood-driven visuals, and an immersive browsing experience.
+        </p>
+
+        <div class="work-block">
+          <h4>Objective</h4>
+          <p>
+            To translate the brand’s ritual-based identity into a calm, elegant digital experience
+            that feels refined and emotionally engaging.
+          </p>
+        </div>
+
+        <div class="work-block">
+          <h4>What I Did</h4>
+          <ul>
+            <li>Designed a minimal, brand-focused interface with strong visual balance</li>
+            <li>Developed smooth section transitions to support storytelling</li>
+            <li>Optimized layout and responsiveness for all screen sizes</li>
+            <li>Maintained consistent brand tone through typography and spacing</li>
+          </ul>
+        </div>
+
+        <div class="work-meta">
+          <span class="tech">HTML</span>
+          <span class="tech">CSS</span>
+          <span class="tech">JavaScript</span>
+        </div>
+
+        <p class="work-result">
+          A refined brand website concept showcasing clean layout execution,
+          responsive design, and attention to premium UI detail.
+        </p>
+
+        <div class="work-links">
+          <a href="https://mohammedshaibaaz.github.io/aurivane-editorial-fragrance-site/" target="_blank" rel="noopener noreferrer">
+            View Live
+          </a>
+          <a href="https://github.com/mohammedshaibaaz/aurivane-editorial-fragrance-site/" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+<section class="services" id="services" aria-labelledby="services-title">
+  <div class="container">
+
+    <header class="section-header">
+      <h2 id="services-title">What I Can Do For You</h2>
+      <p class="section-intro">
+        I help individuals, startups, and small teams build and improve websites
+        with clean design, smooth interactions, and reliable performance.
+      </p>
+    </header>
+
+    <div class="services-grid">
+
+      <article class="service-card">
+        <h3>Website UI & Responsiveness Fixes</h3>
+        <p>
+          Improve existing websites by fixing layout issues, responsiveness problems,
+          spacing, and visual inconsistencies across devices.
+        </p>
+      </article>
+
+      <article class="service-card">
+        <h3>Frontend Development</h3>
+        <p>
+          Build clean, modern webpages using HTML, CSS, and JavaScript with a strong
+          focus on structure, usability, and performance.
+        </p>
+      </article>
+
+      <article class="service-card">
+        <h3>Landing Pages</h3>
+        <p>
+          Create visually refined landing pages designed to clearly communicate
+          value and guide users effectively.
+        </p>
+      </article>
+
+      <article class="service-card">
+        <h3>UI Enhancements & Animations</h3>
+        <p>
+          Add subtle animations, transitions, and interactions that improve user
+          experience without compromising performance.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="about" id="about" aria-labelledby="about-title">
+  <div class="container">
+
+    <header class="section-header">
+      <h2 id="about-title">About Me</h2>
+    </header>
+
+  <div class="about-layout">
+    <div class="about-content">
+      <p>
+        Good interfaces don’t just look clean — they feel deliberate. That idea
+        shapes the way I approach frontend development, where I focus on building
+        responsive and visually balanced web experiences that work smoothly across devices.
+      </p>
+
+      <p>
+        Much of my work revolves around designing and developing concept brand websites
+        and modern landing webpages. I focus on layout, typography, and
+        interaction, making sure every element has a purpose and the interface feels
+        consistent rather than overdone.
+      </p>
+
+      <p class="about-personal">
+        Outside of work, I enjoy watching movies and anime, and I regularly play chess.
+        Both influence how I think — from visual storytelling and pacing to planning,
+        structure, and decision-making — and these ways of thinking often reflect in my
+        design and problem-solving process.
+      </p>
+
+      <p>
+        I’m currently open to freelance work and frontend internships, and I’m keen on
+        contributing to real-world projects where I can add value while continuing to
+        improve my craft.
+      </p>
+    </div>
+
+      <div class="about-structure" aria-hidden="true"></div>
+  </div>
+  </div>
+</section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="container">
+
+    <header class="section-header">
+      <h2 id="contact-title">Get in Touch</h2>
+    </header>
+
+    <div class="contact-content">
+      <p>
+        If you’re looking to improve a website, build a new page, or discuss a frontend
+        opportunity, feel free to reach out. I’m always open to meaningful conversations
+        and potential collaborations.
+      </p>
+
+      <p>
+        Whether it’s a freelance project, an internship opportunity, or a quick question,
+        I’ll do my best to respond promptly.
+      </p>
+
+      <div class="contact-details">
+        <p>
+          <span>Email</span>
+          <a href="mailto:mohdshabaaz1919@gmail.com">mohdshabaaz1919@gmail.com</a>
+        </p>
+
+        <p>
+          <span>LinkedIn</span>
+          <a href="https://www.linkedin.com/in/mohammed-shaibaaz-uddin?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BJS9uGr89R%2FeAPfW6aVGIrg%3D%3D" target="_blank" rel="noopener noreferrer">
+            Mohammed Shaibaaz Uddin ↗
+          </a>
+        </p>
+
+        <p>
+          <span>Resume</span>
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            View Resume ↗
+          </a>
+        </p>
+      </div>
+
+      <a href="mailto:mohdshabaaz1919@gmail.com" class="contact-cta">
+        Contact Me
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+  </div>
+
+  <!-- JS for Side Nav Scroll Behavior -->
+  <script src="scripts.js">
+  </script>
+</body>
+</html>
