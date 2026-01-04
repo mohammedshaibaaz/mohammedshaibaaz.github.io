@@ -1,6 +1,4 @@
-/* ===============================
-   SIDE NAV VISIBILITY (DESKTOP)
-   =============================== */
+
 
 const sideNav = document.getElementById("sideNav");
 const heroSection = document.getElementById("home");
@@ -22,9 +20,7 @@ if (sideNav && heroSection) {
   sideNavObserver.observe(heroSection);
 }
 
-/* ======================================
-   FADE IN ON SCROLL (SAFE, ONE-TIME)
-   ====================================== */
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const sections = document.querySelectorAll(
@@ -140,3 +136,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
