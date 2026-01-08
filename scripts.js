@@ -4,6 +4,29 @@
    =============================================== */
 
 // ============================================
+// ENHANCED CTA TRACKING & ANALYTICS
+// Track user interactions with CTAs
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  // Track CTA clicks for insights
+  const trackCTA = (ctaName) => {
+    if (window.gtag) {
+      gtag('event', 'cta_click', {
+        'cta_name': ctaName,
+        'page': window.location.href
+      });
+    }
+  };
+  
+  // Add tracking to all CTAs
+  document.querySelectorAll('a[href="#contact"], a[href^="mailto:"]').forEach(cta => {
+    cta.addEventListener('click', (e) => {
+      trackCTA(cta.textContent.trim());
+    });
+  });
+});
+
+// ============================================
 // CIRCULAR CARD STACK CAROUSEL
 // Premium Z-axis rotation with smooth depth transitions
 // ============================================
