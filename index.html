@@ -1,39 +1,121 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mohammed Shaibaaz — Frontend Developer</title>
-  <meta name="description" content="Frontend developer working on UI-driven web experiences for brands and digital products." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0A0E13" />
+  <title>Mohammed Shaibaaz — Frontend Developer & Designer</title>
+  <meta name="description" content="Frontend developer & designer creating thoughtful, high-performance websites for luxury brands. Specializing in design thinking and clean code." />
+  <meta name="keywords" content="frontend developer, web designer, luxury websites, design, code, portfolio" />
   
-  <!-- Google Fonts -->
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mohammed Shaibaaz — Frontend Developer" />
+  <meta property="og:description" content="Creating thoughtful websites with clarity, restraint, and purpose." />
+  <meta property="og:url" content="https://mohammedshaibaaz.github.io" />
+  
+  <!-- Google Fonts with Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=General+Sans:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=General+Sans:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23D97706'>MS</text></svg>" />
+  
+  <!-- Sitemap -->
+  <link rel="sitemap" href="/sitemap.xml" type="application/xml" />
   
   <link rel="stylesheet" href="styles.css" />
+  
+  <!-- Schema Markup - Professional/Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mohammed Shaibaaz",
+    "url": "https://mohammedshaibaaz.github.io",
+    "jobTitle": "Frontend Developer & Designer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Self-employed"
+    },
+    "sameAs": [
+      "https://github.com/mohammedshaibaaz",
+      "https://linkedin.com/in/mohammedshaibaaz"
+    ],
+    "email": "mohdshabaaz1919@gmail.com",
+    "knowsAbout": ["Frontend Development", "Web Design", "UI/UX Design", "JavaScript", "CSS", "HTML5"]
+  }
+  </script>
+  
+  <!-- Schema Markup - Portfolio/Creative Work -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Mohammed Shaibaaz Portfolio",
+    "description": "Frontend developer & designer portfolio showcasing luxury brand websites and digital experiences",
+    "url": "https://mohammedshaibaaz.github.io",
+    "creator": {
+      "@type": "Person",
+      "name": "Mohammed Shaibaaz",
+      "url": "https://mohammedshaibaaz.github.io"
+    },
+    "mainEntity": [
+      {
+        "@type": "WebSite",
+        "name": "VELTRIN",
+        "url": "https://mohammedshaibaaz.github.io/veltrin-luxury-watch-website/",
+        "description": "Luxury watch brand website built around precision and restraint"
+      },
+      {
+        "@type": "WebSite",
+        "name": "AURIVANE",
+        "url": "https://mohammedshaibaaz.github.io/aurivane-editorial-fragrance-site/",
+        "description": "Fragrance brand website shaped by storytelling and atmosphere"
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- Global noise overlay for premium texture -->
+  <div class="global-noise" aria-hidden="true"></div>
   
   <!-- ============================================
        NAVIGATION
        ============================================ -->
-  <nav class="main-nav" role="navigation">
+  <nav class="main-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-content">
-      <a href="#home" class="nav-brand">Mohammed Shaibaaz</a>
+      <a href="#home" class="nav-brand">Mohammed shaibaaz uddin</a>
       
-      <div class="nav-links">
+      <div class="nav-links" id="navLinks">
         <a href="#work">Work</a>
         <a href="#focus">Focus</a>
         <a href="#about">About</a>
         <a href="#contact" class="nav-cta">Contact</a>
+        <button 
+          class="theme-toggle" 
+          id="themeToggle" 
+          aria-label="Toggle dark and light theme"
+          type="button">
+          <span class="theme-icon" aria-hidden="true"></span>
+        </button>
       </div>
 
-      <button class="mobile-menu-toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button 
+        class="mobile-menu-toggle" 
+        id="mobileMenuToggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+        type="button">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </button>
     </div>
   </nav>
@@ -48,44 +130,56 @@
     <a href="#contact" class="mobile-nav-link mobile-nav-cta">Contact</a>
   </div>
 
+  <main id="main-content">
   <!-- ============================================
        HERO SECTION
        ============================================ -->
-  <section id="home" class="hero">
+  <section id="home" class="hero" aria-label="Hero section - Welcome">
     <div class="hero-container">
       <div class="hero-content">
-        <h1 class="hero-headline">Thoughtful websites that work well and feel right.</h1>
-        <p class="hero-subtext">Clean design. Solid code. Attention to detail. That's what every project gets.</p>
-        
+        <div class="hero-identifier">PORTFOLIO</div>
+        <h1 class="hero-headline">Websites that <span>feel considered</span>, work <span>effortlessly</span>, and communicate <span>clearly</span>.</h1>
+        <p class="hero-subtext">A balance of design thinking and frontend precision — without unnecessary complexity.</p>
         <div class="hero-ctas">
-          <a href="#work" class="btn btn-primary">See My Work</a>
-          <a href="#contact" class="btn btn-secondary">Let's Talk</a>
+          <a href="#work" class="btn btn-primary">View Selected Work</a>
+          <a href="#contact" class="btn btn-secondary">Start a Project</a>
         </div>
       </div>
-
       <div class="hero-visual">
         <div class="stacked-carousel">
           <div class="carousel-card" data-index="0">
             <a href="https://mohammedshaibaaz.github.io/veltrin-luxury-watch-website/" target="_blank" rel="noopener noreferrer" class="carousel-link">
-              <img src="./veltrin.png" alt="VELTRIN - Luxury watch website" class="carousel-image" />
+              <img src="./veltrin.png" loading="lazy" alt="VELTRIN - Luxury watch website" class="carousel-image" />
               <div class="carousel-caption">VELTRIN</div>
             </a>
           </div>
           <div class="carousel-card" data-index="1">
             <a href="https://mohammedshaibaaz.github.io/aurivane-editorial-fragrance-site/" target="_blank" rel="noopener noreferrer" class="carousel-link">
-              <img src="./aurivane.png" alt="AURIVANE - Fragrance brand website" class="carousel-image" />
+              <img src="./aurivane.png" loading="lazy" alt="AURIVANE - Fragrance brand website" class="carousel-image" />
               <div class="carousel-caption">AURIVANE</div>
             </a>
           </div>
           <div class="carousel-card active" data-index="2">
             <a href="#" class="carousel-link">
-              <img src="./veltrin.png" alt="PULSE - Strength training platform" class="carousel-image" />
+              <img src="./veltrin.png" loading="lazy" alt="PULSE - Strength training platform" class="carousel-image" />
               <div class="carousel-caption">PULSE</div>
             </a>
           </div>
         </div>
       </div>
+      <!-- Subtle atmospheric particles for depth -->
+      <div class="hero-particles" aria-hidden="true">
+        <div class="hero-particle" style="top:12%;left:22%;"></div>
+        <div class="hero-particle" style="top:68%;left:78%;"></div>
+        <div class="hero-particle" style="top:38%;left:60%;"></div>
+        <div class="hero-particle" style="top:80%;left:30%;"></div>
+      </div>
     </div>
+    <div class="hero-scroll-indicator">
+      <div class="hero-scroll-indicator-dot"></div>
+      <div class="hero-scroll-indicator-line"></div>
+    </div>
+    <div class="hero-noise"></div>
   </section>
 
   <!-- ============================================
@@ -93,7 +187,7 @@
        ============================================ -->
   <section class="value-statement">
     <div class="value-container">
-      <p class="value-text">Good design is invisible. It just works. That's what I aim for with every project.</p>
+      <p class="value-text">Good websites don't ask for attention. They earn it through clarity, performance, and thoughtful execution.</p>
     </div>
   </section>
 
@@ -117,7 +211,7 @@
         <div class="project-content">
           <h3 class="project-name">VELTRIN</h3>
           <p class="project-role">Design & Frontend</p>
-          <p class="project-description">A luxury watch brand website with a product catalog, detailed watch specs, smooth scroll interactions, and a refined aesthetic that matches the brand.</p>
+          <p class="project-description">A luxury watch brand website built around precision and restraint. The experience focuses on product detail, smooth interactions, and a visual language aligned with craftsmanship and heritage.</p>
           
           <div class="project-links">
             <a href="https://mohammedshaibaaz.github.io/veltrin-luxury-watch-website/" target="_blank" rel="noopener noreferrer" class="project-link">View Live</a>
@@ -140,7 +234,7 @@
         <div class="project-content">
           <h3 class="project-name">AURIVANE</h3>
           <p class="project-role">Design & Frontend</p>
-          <p class="project-description">A fragrance brand website with a storytelling layout, scroll-triggered animations, product discovery, and a design that feels as elegant as the scent itself.</p>
+          <p class="project-description">A fragrance brand website shaped by storytelling and atmosphere. Scroll-based motion, pacing, and structure work together to create a refined, immersive browsing experience.</p>
           
           <div class="project-links">
             <a href="https://mohammedshaibaaz.github.io/aurivane-editorial-fragrance-site/" target="_blank" rel="noopener noreferrer" class="project-link">View Live</a>
@@ -163,7 +257,7 @@
         <div class="project-content">
           <h3 class="project-name">PULSE STRENGTH CLUB</h3>
           <p class="project-role">Design & Frontend</p>
-          <p class="project-description">A fitness platform with member onboarding, class calendar, booking system, and a clean interface that makes managing workouts simple and straightforward.</p>
+          <p class="project-description">A fitness platform designed for clarity and usability, featuring onboarding flows, class scheduling, and booking. The interface prioritizes function without sacrificing visual discipline.</p>
           
           <div class="project-links">
             <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">View Live</a>
@@ -189,15 +283,15 @@
         
         <article class="service-card">
           <h3>Brand & Product Websites</h3>
-          <p>Custom sites that showcase who you are and what you do. Built to be fast, accessible, and easy to use.</p>
+          <p>Purpose-built websites that communicate identity clearly and support long-term growth.</p>
         </article>
         <article class="service-card">
           <h3>Landing Pages</h3>
-          <p>Focused pages designed to tell your story and get results. Clear messaging, good design, solid performance.</p>
+          <p>Focused, high-impact pages designed to guide attention and support conversion without distraction.</p>
         </article>
         <article class="service-card">
           <h3>Website Updates & Redesigns</h3>
-          <p>Refresh your existing site with better design, improved speed, and a stronger user experience.</p>
+          <p>Existing websites refined through improved structure, performance, and visual clarity.</p>
         </article>
 
       </div>
@@ -213,7 +307,7 @@
       <div class="section-header">
         <h2>Approach</h2>
       </div>
-      <p class="section-intro">Each project follows a considered sequence, from early structure to final implementation.</p>
+      <p class="section-intro">Work follows a structured process designed to reduce friction and maintain quality at every stage.</p>
       <div class="process-steps">
         <!-- Decorative curved connector -->
         <svg class="process-connector" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
@@ -223,25 +317,25 @@
         <div class="process-step">
           <div class="step-number">01</div>
           <h3 class="step-title">Discovery</h3>
-          <p class="step-description">Early structure and requirements.</p>
+          <p class="step-description">Context, goals, and constraints are defined before any design decisions are made.</p>
         </div>
 
         <div class="process-step">
           <div class="step-number">02</div>
           <h3 class="step-title">Design</h3>
-          <p class="step-description">Visual direction and layout.</p>
+          <p class="step-description">Visual language and layout are shaped around clarity, hierarchy, and restraint.</p>
         </div>
 
         <div class="process-step">
           <div class="step-number">03</div>
           <h3 class="step-title">Build</h3>
-          <p class="step-description">Frontend implementation.</p>
+          <p class="step-description">Frontend implementation focused on performance, accessibility, and clean code.</p>
         </div>
 
         <div class="process-step">
           <div class="step-number">04</div>
           <h3 class="step-title">Refinement</h3>
-          <p class="step-description">Review and polish.</p>
+          <p class="step-description">Details are reviewed, polished, and aligned before release.</p>
         </div>
 
       </div>
@@ -263,8 +357,8 @@
           </svg>
         </div>
         <div class="about-text">
-          <p>I work at the intersection of design and code. I believe the best websites aren't flashy—they're thoughtful. They work well, load fast, and feel natural to use.</p>
-          <p>I take time to understand what you're trying to do, then build something that actually helps you get there. That's it.</p>
+          <p>Design and development are treated as complementary disciplines, not separate steps. The result is websites that feel natural to use, load quickly, and remain relevant over time.</p>
+          <p>The work emphasizes clarity over trends and decisions over decoration.</p>
         </div>
       </div>
 
@@ -276,9 +370,9 @@
        ============================================ -->
   <section id="contact" class="final-cta">
     <div class="final-cta-container">
-      <h2 class="final-cta-headline">Got a project in mind?</h2>
-      <p class="final-cta-text">Whether it's a new site, a redesign, or something custom—I'd like to hear about it. Let's see if we're a good fit.</p>
-      <a href="mailto:mohdshabaaz1919@gmail.com" class="btn btn-primary btn-large">Get in Touch</a>
+      <h2 class="final-cta-headline">Let's Work Together</h2>
+      <p class="final-cta-text">If you have a project in mind or just want to explore what's possible, reach out. I'd be happy to discuss how we can work together.</p>
+      <a href="mailto:mohdshabaaz1919@gmail.com" class="btn btn-primary btn-large">Start a Conversation</a>
     </div>
   </section>
 
@@ -289,23 +383,38 @@
     <div class="footer-container">
       <div class="footer-info">
         <p class="footer-name">Mohammed Shaibaaz</p>
-        <p class="footer-title">Frontend Developer</p>
+        <p class="footer-title">Frontend Developer — Design & Code</p>
       </div>
       
       <div class="footer-contact">
         <a href="mailto:mohdshabaaz1919@gmail.com" class="footer-link">mohdshabaaz1919@gmail.com</a>
       </div>
       
+      <div class="footer-meta-links">
+        <a href="/PRIVACY.md" class="footer-meta-link">Privacy</a>
+        <a href="https://github.com/mohammedshaibaaz" target="_blank" rel="noopener noreferrer" class="footer-meta-link">GitHub</a>
+      </div>
+      
       <p class="footer-copyright">© 2026 Mohammed Shaibaaz. All rights reserved.</p>
     </div>
   </footer>
+
+  </main>
 
   <!-- Optional: Sticky Mobile CTA -->
   <div class="mobile-sticky-cta">
     <a href="#contact" class="btn btn-primary btn-block">Contact</a>
   </div>
 
-  <script src="scripts.js"></script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <script src="scripts.js" defer></script>
 </body>
 </html>
-

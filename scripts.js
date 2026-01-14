@@ -4,6 +4,77 @@
    =============================================== */
 
 // ============================================
+// THEME TOGGLE
+// Dark/Light mode switcher with localStorage persistence
+// ============================================
+function initThemeToggle() {
+  const themeToggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+  
+  // Get saved theme or default to 'dark'
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  html.setAttribute('data-theme', savedTheme);
+  
+  // Theme toggle handler
+  themeToggle?.addEventListener('click', () => {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+}
+
+// Initialize theme on page load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initThemeToggle);
+} else {
+  initThemeToggle();
+}
+
+// ============================================
+// KEYBOARD NAVIGATION & ACCESSIBILITY
+// Improve keyboard accessibility and navigation
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  // Ensure all buttons and links are keyboard accessible
+  const focusableElements = document.querySelectorAll(
+    'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  
+  // Trap focus in mobile menu when open
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+  const mobileNav = document.querySelector('.mobile-nav');
+  
+  if (mobileMenuToggle && mobileNav) {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab' && document.body.classList.contains('nav-open')) {
+        const focusableInMenu = mobileNav.querySelectorAll(
+          'a, button, [tabindex]:not([tabindex="-1"])'
+        );
+        
+        if (focusableInMenu.length === 0) return;
+        
+        const firstElement = focusableInMenu[0];
+        const lastElement = focusableInMenu[focusableInMenu.length - 1];
+        
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
+    });
+  }
+});
+
+// ============================================
 // ENHANCED CTA TRACKING & ANALYTICS
 // Track user interactions with CTAs
 // ============================================
@@ -103,7 +174,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       e.preventDefault();
       
       // Close mobile menu if open
-      document.body.classList.remove('nav-open');
+      const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+      if (document.body.classList.contains('nav-open')) {
+        document.body.classList.remove('nav-open');
+        if (mobileMenuToggle) {
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
       
       // Smooth scroll to target
       targetElement.scrollIntoView({
@@ -124,9 +201,9 @@ const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 if (mobileToggle) {
   // Open/close menu
   mobileToggle.addEventListener('click', () => {
-    const open = !document.body.classList.contains('nav-open');
+    const isOpen = document.body.classList.contains('nav-open');
     document.body.classList.toggle('nav-open');
-    mobileToggle.setAttribute('aria-expanded', String(open));
+    mobileToggle.setAttribute('aria-expanded', String(!isOpen));
   });
 }
 
@@ -147,7 +224,11 @@ mobileNavLinks.forEach(link => {
 // Close menu on escape key
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     document.body.classList.remove('nav-open');
+    if (mobileMenuToggle) {
+      mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    }
   }
 });
 
