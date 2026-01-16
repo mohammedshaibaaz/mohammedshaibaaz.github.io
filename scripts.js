@@ -9,20 +9,23 @@
 // ============================================
 function initThemeToggle() {
   const themeToggle = document.getElementById('themeToggle');
+  const mobileThemeToggle = document.getElementById('mobileThemeToggle');
   const html = document.documentElement;
   
-  // Get saved theme or default to 'dark'
-  const savedTheme = localStorage.getItem('theme') || 'dark';
+  // Get saved theme or default to 'light'
+  const savedTheme = localStorage.getItem('theme') || 'light';
   html.setAttribute('data-theme', savedTheme);
   
-  // Theme toggle handler
-  themeToggle?.addEventListener('click', () => {
+  // Theme toggle handler (desktop + mobile)
+  const toggleTheme = () => {
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
-  });
+  };
+
+  themeToggle?.addEventListener('click', toggleTheme);
+  mobileThemeToggle?.addEventListener('click', toggleTheme);
 }
 
 // Initialize theme on page load
@@ -110,40 +113,65 @@ document.addEventListener('DOMContentLoaded', () => {
   let isPaused = false;
   let intervalId = null;
   
-  // Circular rotation: front card moves to back, others shift forward
-  function rotateCardsCircular() {
-    if (isPaused) return;
-    
-    cards.forEach(card => {
-      const currentIndex = parseInt(card.getAttribute('data-index'));
-      
-      // Circular loop: 2 → 1 → 0 → 2
-      // Front (2) moves to back (0), middle (1) to front (2), back (0) to middle (1)
-      let newIndex;
-      if (currentIndex === 2) {
-        newIndex = 0; // Front card moves to back
-      } else if (currentIndex === 1) {
-        newIndex = 2; // Middle card moves to front
-      } else {
-        newIndex = 1; // Back card moves to middle
-      }
-      
-      card.setAttribute('data-index', newIndex);
-      
-      // Update active state for front card
-      if (newIndex === 2) {
-        card.classList.add('active');
-      } else {
-        card.classList.remove('active');
-      }
+  // Dynamic carousel layout for N cards
+  let frontIndex = null;
+
+  function updateCarouselPositions(front) {
+    const total = cards.length;
+    if (total === 0) return;
+
+    cards.forEach((card, idx) => {
+      // compute circular relative position from front (0 is front)
+      let rel = (idx - front + total) % total; // 0..total-1
+      if (rel > total / 2) rel -= total; // choose shortest direction (negative left)
+      const absPos = Math.abs(rel);
+
+      // visual params (tweakable)
+      const spacingX = 140; // px per step horizontally
+      const spacingY = 20;  // px per step vertically
+      const depthZ = 60;    // z offset per step
+      const scaleStep = 0.09; // scale reduction per step
+
+      const translateX = rel * spacingX;
+      const translateY = absPos * spacingY;
+      const translateZ = -absPos * depthZ;
+      const scale = Math.max(0.6, 1 - scaleStep * absPos);
+      const opacity = Math.max(0.25, 1 - 0.25 * absPos);
+      const blur = Math.min(4, absPos * 1.5);
+      const zIndex = 100 - absPos;
+
+      card.style.transform = `translateX(${translateX}px) translateY(${translateY}px) scale(${scale}) translateZ(${translateZ}px)`;
+      card.style.zIndex = String(zIndex);
+      card.style.opacity = String(opacity);
+      card.style.filter = `brightness(${0.5 + (1 - absPos) * 0.5}) blur(${blur}px)`;
+
+      if (rel === 0) card.classList.add('active'); else card.classList.remove('active');
     });
   }
-  
+
+  // Rotate front index forward by one and update positions
+  function rotateCardsCircular() {
+    if (isPaused) return;
+    const total = cards.length;
+    if (total === 0) return;
+    frontIndex = (frontIndex + 1) % total;
+    updateCarouselPositions(frontIndex);
+  }
+
   // Auto-advance every 6 seconds (calm, editorial timing)
   function startCarousel() {
-    // Only run on desktop
     if (window.innerWidth <= 768) return;
+    // Respect reduced-motion preference
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (intervalId) return;
     intervalId = setInterval(rotateCardsCircular, 6000);
+  }
+
+  function stopCarousel() {
+    if (intervalId) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
   }
   
   // Pause on hover for user examination
@@ -155,9 +183,114 @@ document.addEventListener('DOMContentLoaded', () => {
     isPaused = false;
   });
   
+  // Initialize frontIndex from existing .active or default to last card
+  const totalCards = cards.length;
+  if (totalCards > 0) {
+    const activeCard = Array.from(cards).findIndex(c => c.classList.contains('active'));
+    frontIndex = activeCard >= 0 ? activeCard : Math.max(0, totalCards - 1);
+    updateCarouselPositions(frontIndex);
+  }
+
   // Start carousel only on desktop
   if (window.innerWidth > 768) {
     startCarousel();
+  }
+
+  /* --- Enhancements: resize handler, keyboard nav, touch swipe --- */
+  // Debounced resize handler
+  let resizeTimeout = null;
+  function onResize() {
+    if (resizeTimeout) clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      // recompute layout
+      updateCarouselPositions(frontIndex);
+      // toggle auto-advance based on width
+      if (window.innerWidth > 768) startCarousel(); else stopCarousel();
+    }, 150);
+  }
+  window.addEventListener('resize', onResize);
+
+  // Keyboard navigation (when carousel focused)
+  carousel.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      // rotate backward
+      const total = cards.length; if (total === 0) return;
+      frontIndex = (frontIndex - 1 + total) % total;
+      updateCarouselPositions(frontIndex);
+      // pause briefly
+      stopCarousel();
+      setTimeout(() => { if (window.innerWidth > 768) startCarousel(); }, 3000);
+    } else if (e.key === 'ArrowRight') {
+      rotateCardsCircular();
+      stopCarousel();
+      setTimeout(() => { if (window.innerWidth > 768) startCarousel(); }, 3000);
+    }
+  });
+
+  // Pointer/touch swipe support
+  let pointerDown = false; let startX = 0; let currentX = 0;
+  carousel.addEventListener('pointerdown', (e) => {
+    pointerDown = true; startX = e.clientX; currentX = startX; carousel.setPointerCapture(e.pointerId);
+    // pause while interacting
+    isPaused = true;
+  });
+  carousel.addEventListener('pointermove', (e) => { if (!pointerDown) return; currentX = e.clientX; });
+  carousel.addEventListener('pointerup', (e) => {
+    if (!pointerDown) return; pointerDown = false; isPaused = false; const dx = currentX - startX;
+    const threshold = 40; // px
+    if (dx > threshold) {
+      // swipe right -> previous
+      const total = cards.length; if (total === 0) return;
+      frontIndex = (frontIndex - 1 + total) % total; updateCarouselPositions(frontIndex);
+    } else if (dx < -threshold) {
+      // swipe left -> next
+      rotateCardsCircular();
+    }
+    // resume auto-advance after short delay
+    setTimeout(() => { if (window.innerWidth > 768) startCarousel(); }, 1500);
+  });
+  carousel.addEventListener('pointercancel', () => { pointerDown = false; isPaused = false; });
+
+  /* ------------------ Scroll-based Fade Animations ------------------ */
+  function initScrollFadeAnimations() {
+    // Respect reduced-motion users
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      // make elements visible immediately
+      document.querySelectorAll('.fade-in-on-scroll').forEach(el => el.classList.add('in-view'));
+      return;
+    }
+
+    const selector = [
+      'section', 'article', '.project-item', '.service-card', '.process-step', '.hero', '.hero-container', '.project-content', '.project-image', '.carousel-card', '.value-statement', '.services', '.projects', '.about', '.contact', '.footer'
+    ].join(',');
+
+    const elements = Array.from(document.querySelectorAll(selector)).filter(Boolean);
+    // Add the helper class where it's not present already
+    elements.forEach(el => {
+      if (!el.classList.contains('fade-in-on-scroll')) el.classList.add('fade-in-on-scroll');
+    });
+
+    const ioOptions = { root: null, rootMargin: '0px 0px -12% 0px', threshold: [0, 0.15, 0.5] };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const el = entry.target;
+        if (entry.isIntersecting) {
+          el.classList.add('in-view');
+        } else {
+          // allow fade-out when leaving viewport
+          el.classList.remove('in-view');
+        }
+      });
+    }, ioOptions);
+
+    elements.forEach(el => observer.observe(el));
+  }
+
+  // Initialize animations after DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollFadeAnimations);
+  } else {
+    initScrollFadeAnimations();
   }
 });
 
@@ -440,4 +573,110 @@ window.addEventListener('load', () => {
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('loaded');
+});
+
+// ============================================
+// SECTION THRESHOLD LINE ANIMATION
+// Animate width left→right on scroll entry (once, slow, calm)
+document.addEventListener('DOMContentLoaded', () => {
+  const thresholdLines = document.querySelectorAll('.section-threshold-line');
+  if (!thresholdLines.length) return;
+
+  const observer = new window.IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target); // Animate once only
+        }
+      });
+    },
+    {
+      root: null,
+      threshold: 0.12
+    }
+  );
+
+  thresholdLines.forEach(line => {
+    observer.observe(line);
+  });
+});
+
+// ============================================
+// PROJECT SEPARATOR LINE ANIMATION
+// Animate width left→right on scroll entry (once, slow, calm)
+document.addEventListener('DOMContentLoaded', () => {
+  const projectSeparators = document.querySelectorAll('.project-separator-line');
+  if (!projectSeparators.length) return;
+
+  const observer = new window.IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target); // Animate once only
+        }
+      });
+    },
+    {
+      root: null,
+      threshold: 0.12
+    }
+  );
+
+  projectSeparators.forEach(line => {
+    observer.observe(line);
+  });
+});
+
+// ============================================
+// APPROACH TIMELINE LINE ANIMATION
+// Reveal vertical line top→bottom as steps appear (once, slow, calm)
+document.addEventListener('DOMContentLoaded', () => {
+  const timelineLine = document.querySelector('.process-timeline-line');
+  if (!timelineLine) return;
+
+  const observer = new window.IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target); // Animate once only
+        }
+      });
+    },
+    {
+      root: null,
+      threshold: 0.18
+    }
+  );
+
+  observer.observe(timelineLine);
+});
+
+// ============================================
+// PROJECTS SCROLL PROGRESS LINE
+// Subtle progress bar tied to scroll position in Projects section
+document.addEventListener('DOMContentLoaded', () => {
+  const progressLine = document.querySelector('.projects-scroll-progress');
+  const projectsSection = document.querySelector('.projects');
+  if (!progressLine || !projectsSection) return;
+
+  function updateProgress() {
+    const rect = projectsSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const sectionHeight = projectsSection.offsetHeight;
+    const scrollY = window.scrollY || window.pageYOffset;
+    const sectionTop = projectsSection.offsetTop;
+    const sectionBottom = sectionTop + sectionHeight;
+    const progress = Math.min(
+      1,
+      Math.max(0, (scrollY + windowHeight - sectionTop) / (sectionHeight + windowHeight))
+    );
+    progressLine.style.width = (progress * 100) + '%';
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
 });

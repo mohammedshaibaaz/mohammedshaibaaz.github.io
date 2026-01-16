@@ -13,6 +13,13 @@
   <meta property="og:title" content="Mohammed Shaibaaz — Frontend Developer" />
   <meta property="og:description" content="Creating thoughtful websites with clarity, restraint, and purpose." />
   <meta property="og:url" content="https://mohammedshaibaaz.github.io" />
+  <meta property="og:image" content="https://mohammedshaibaaz.github.io/veltrin.png" />
+  <meta property="og:image:alt" content="VELTRIN luxury watch website — screenshot" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@mohammedshaibaaz" />
+
+  <!-- Preload key LCP image to improve perceived load -->
+  <link rel="preload" as="image" href="/veltrin.png" />
   
   <!-- Google Fonts with Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -90,7 +97,7 @@
        ============================================ -->
   <nav class="main-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-content">
-      <a href="#home" class="nav-brand">Mohammed shaibaaz uddin</a>
+      <a href="#home" class="nav-brand">Mohammed Shaibaaz Uddin</a>
       
       <div class="nav-links" id="navLinks">
         <a href="#work">Work</a>
@@ -128,6 +135,15 @@
     <a href="#focus" class="mobile-nav-link">Focus</a>
     <a href="#about" class="mobile-nav-link">About</a>
     <a href="#contact" class="mobile-nav-link mobile-nav-cta">Contact</a>
+    <button 
+      class="theme-toggle mobile-theme-toggle" 
+      id="mobileThemeToggle"
+      aria-label="Toggle dark and light theme"
+      type="button"
+      style="margin-top:0.5rem;">
+      <span class="theme-icon" aria-hidden="true"></span>
+    </button>
+    
   </div>
 
   <main id="main-content">
@@ -146,23 +162,29 @@
         </div>
       </div>
       <div class="hero-visual">
-        <div class="stacked-carousel">
+        <div class="stacked-carousel" role="region" aria-label="Featured work carousel" tabindex="0">
           <div class="carousel-card" data-index="0">
-            <a href="https://mohammedshaibaaz.github.io/veltrin-luxury-watch-website/" target="_blank" rel="noopener noreferrer" class="carousel-link">
-              <img src="./veltrin.png" loading="lazy" alt="VELTRIN - Luxury watch website" class="carousel-image" />
+            <a href="https://veltrin-luxury-watch.netlify.app/" target="_blank" rel="noopener noreferrer" class="carousel-link">
+              <img src="./veltrin.png" loading="lazy" decoding="async" fetchpriority="high" width="1600" height="900" srcset="./veltrin.png 800w, ./veltrin.png 1200w, ./veltrin.png 1600w" sizes="(max-width:768px) 85vw, 50vw" alt="VELTRIN - Luxury watch website" class="carousel-image" />
               <div class="carousel-caption">VELTRIN</div>
             </a>
           </div>
           <div class="carousel-card" data-index="1">
             <a href="https://mohammedshaibaaz.github.io/aurivane-editorial-fragrance-site/" target="_blank" rel="noopener noreferrer" class="carousel-link">
-              <img src="./aurivane.png" loading="lazy" alt="AURIVANE - Fragrance brand website" class="carousel-image" />
+              <img src="./aurivane.png" loading="lazy" decoding="async" width="1600" height="900" srcset="./aurivane.png 800w, ./aurivane.png 1200w, ./aurivane.png 1600w" sizes="(max-width:768px) 85vw, 50vw" alt="AURIVANE - Fragrance brand website" class="carousel-image" />
               <div class="carousel-caption">AURIVANE</div>
             </a>
           </div>
           <div class="carousel-card active" data-index="2">
-            <a href="#" class="carousel-link">
-              <img src="./veltrin.png" loading="lazy" alt="PULSE - Strength training platform" class="carousel-image" />
+            <a href="https://pulse-strength-gym.vercel.app/" class="carousel-link">
+              <img src="./pulse.png" loading="lazy" decoding="async" width="1600" height="900" srcset="./pulse.png 800w, ./pulse.png 1200w, ./pulse.png 1600w" sizes="(max-width:768px) 85vw, 50vw" alt="PULSE - Strength training platform" class="carousel-image" />
               <div class="carousel-caption">PULSE</div>
+            </a>
+          </div>
+          <div class="carousel-card" data-index="3">
+            <a href="https://mohammedshaibaaz.github.io/ember-cafe/" class="carousel-link">
+              <img src="./ember.png" loading="lazy" decoding="async" width="1600" height="900" srcset="./ember.png 800w, ./ember.png 1200w, ./ember.png 1600w" sizes="(max-width:768px) 85vw, 50vw" alt="EMBER - CAFÉ" class="carousel-image" />
+              <div class="carousel-caption">EMBER</div>
             </a>
           </div>
         </div>
@@ -185,6 +207,8 @@
   <!-- ============================================
        VALUE STATEMENT
        ============================================ -->
+  <!-- Section Threshold Line: Projects (Work) -->
+  <div class="section-threshold-line" aria-hidden="true"></div>
   <section class="value-statement">
     <div class="value-container">
       <p class="value-text">Good websites don't ask for attention. They earn it through clarity, performance, and thoughtful execution.</p>
@@ -194,14 +218,19 @@
   <!-- ============================================
        SELECTED WORK / PROJECTS
        ============================================ -->
+  <!-- Section Threshold Line: Work (Projects) -->
+  <div class="section-threshold-line" aria-hidden="true"></div>
   <section id="work" class="projects">
+    <div class="projects-scroll-progress" aria-hidden="true"></div>
+    <div class="vertical-grid-spine" aria-hidden="true"></div>
     <div class="projects-container">
       
       <!-- Project 1: VELTRIN -->
+      <div class="project-separator-line" aria-hidden="true"></div>
       <article class="project-item">
-        <a href="https://mohammedshaibaaz.github.io/veltrin-luxury-watch-website/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+        <a href="https://veltrin-luxury-watch.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-image-link">
           <div class="project-image">
-            <img src="./veltrin.png" loading="lazy" alt="VELTRIN luxury watch website" />
+            <img src="./veltrin.png" loading="lazy" decoding="async" width="1200" height="900" srcset="./veltrin.png 600w, ./veltrin.png 900w, ./veltrin.png 1200w" sizes="(max-width:768px) 100vw, 50vw" alt="VELTRIN luxury watch website" />
             <div class="project-overlay">
               <span class="overlay-title">VELTRIN</span>
             </div>
@@ -209,22 +238,25 @@
         </a>
         
         <div class="project-content">
-          <h3 class="project-name">VELTRIN</h3>
+          <h3 class="project-name">VELTRIN<span class="micro-hover-line" aria-hidden="true"></span></h3>
           <p class="project-role">Design & Frontend</p>
           <p class="project-description">A luxury watch brand website built around precision and restraint. The experience focuses on product detail, smooth interactions, and a visual language aligned with craftsmanship and heritage.</p>
+          <div class="project-vibe">Precision, Heritage, High-Contrast</div>
+          <div class="project-key-focus"><strong>Key Focus:</strong> Immersive UI, micro-interactions, and high-fidelity imagery integration.</div>
           
           <div class="project-links">
-            <a href="https://mohammedshaibaaz.github.io/veltrin-luxury-watch-website/" target="_blank" rel="noopener noreferrer" class="project-link">View Live</a>
-            <a href="https://github.com/mohammedshaibaaz/veltrin-luxury-watch-website/" target="_blank" rel="noopener noreferrer" class="project-link">GitHub</a>
+            <a href="https://veltrin-luxury-watch.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link">View Live<span class="micro-hover-line" aria-hidden="true"></span></a>
+            <a href="https://github.com/mohammedshaibaaz/veltrin-luxury-watch-website/" target="_blank" rel="noopener noreferrer" class="project-link">GitHub<span class="micro-hover-line" aria-hidden="true"></span></a>
           </div>
         </div>
       </article>
 
       <!-- Project 2: AURIVANE -->
+      <div class="project-separator-line" aria-hidden="true"></div>
       <article class="project-item">
         <a href="https://mohammedshaibaaz.github.io/aurivane-editorial-fragrance-site/" target="_blank" rel="noopener noreferrer" class="project-image-link">
           <div class="project-image">
-            <img src="./aurivane.png" loading="lazy" alt="AURIVANE luxury fragrance website" />
+            <img src="./aurivane.png" loading="lazy" decoding="async" width="1200" height="900" srcset="./aurivane.png 600w, ./aurivane.png 900w, ./aurivane.png 1200w" sizes="(max-width:768px) 100vw, 50vw" alt="AURIVANE luxury fragrance website" />
             <div class="project-overlay">
               <span class="overlay-title">AURIVANE</span>
             </div>
@@ -232,22 +264,49 @@
         </a>
         
         <div class="project-content">
-          <h3 class="project-name">AURIVANE</h3>
+          <h3 class="project-name">AURIVANE<span class="micro-hover-line" aria-hidden="true"></span></h3>
           <p class="project-role">Design & Frontend</p>
           <p class="project-description">A fragrance brand website shaped by storytelling and atmosphere. Scroll-based motion, pacing, and structure work together to create a refined, immersive browsing experience.</p>
+          <div class="project-vibe">Sensual, Fluid, Minimalist</div>
+          <div class="project-key-focus"><strong>Key Focus:</strong> Typography-driven design, fluid motion, and editorial layout systems.</div>
           
           <div class="project-links">
-            <a href="https://mohammedshaibaaz.github.io/aurivane-editorial-fragrance-site/" target="_blank" rel="noopener noreferrer" class="project-link">View Live</a>
-            <a href="https://github.com/mohammedshaibaaz/aurivane-editorial-fragrance-site/" target="_blank" rel="noopener noreferrer" class="project-link">GitHub</a>
+            <a href="https://mohammedshaibaaz.github.io/aurivane-editorial-fragrance-site/" target="_blank" rel="noopener noreferrer" class="project-link">View Live<span class="micro-hover-line" aria-hidden="true"></span></a>
+            <a href="https://github.com/mohammedshaibaaz/aurivane-editorial-fragrance-site/" target="_blank" rel="noopener noreferrer" class="project-link">GitHub<span class="micro-hover-line" aria-hidden="true"></span></a>
           </div>
         </div>
       </article>
 
+        <!-- Project 3: EMBER CAFÉ -->
+        <div class="project-separator-line" aria-hidden="true"></div>
+        <article class="project-item">
+          <a href="https://mohammedshaibaaz.github.io/ember-cafe/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+            <div class="project-image">
+              <img src="./ember.png" loading="lazy" decoding="async" width="1200" height="900" srcset="./ember.png 600w, ./ember.png 900w, ./ember.png 1200w" sizes="(max-width:768px) 100vw, 50vw" alt="EMBER CAFÉ website" />  
+              <div class="project-overlay">
+                <span class="overlay-title">EMBER CAFÉ</span>
+              </div>
+            </div>
+          </a>
+          <div class="project-content">
+            <h3 class="project-name">EMBER CAFÉ<span class="micro-hover-line" aria-hidden="true"></span></h3>
+            <p class="project-role">Design & Frontend</p>
+            <p class="project-description">A digital extension of a specialty coffee house. This project balances earthy aesthetics with modern performance, focusing on intuitive navigation and a "warm-minimalist" visual identity.</p>
+            <div class="project-vibe">Warm, Tactile, Modern</div>
+            <div class="project-key-focus"><strong>Key Focus:</strong> Responsive layouts, brand-consistent color palettes, and menu architecture.</div>
+            <div class="project-links">
+              <a href="https://mohammedshaibaaz.github.io/ember-cafe/" target="_blank" rel="noopener noreferrer" class="project-link">View Live<span class="micro-hover-line" aria-hidden="true"></span></a>
+              <a href="https://github.com/mohammedshaibaaz/ember-cafe/" target="_blank" rel="noopener noreferrer" class="project-link">GitHub<span class="micro-hover-line" aria-hidden="true"></span></a>
+            </div>
+          </div>
+        </article>
+
       <!-- Project 3: PULSE STRENGTH CLUB -->
+      <div class="project-separator-line" aria-hidden="true"></div>
       <article class="project-item">
-        <a href="#" target="_blank" rel="noopener noreferrer" class="project-image-link">
+        <a href="https://pulse-strength-gym.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-image-link">
           <div class="project-image">
-            <img src="./veltrin.png" loading="lazy" alt="PULSE STRENGTH CLUB fitness website" />
+            <img src="./pulse.png" loading="lazy" decoding="async" width="1200" height="900" srcset="./pulse.png 600w, ./pulse.png 900w, ./pulse.png 1200w" sizes="(max-width:768px) 100vw, 50vw" alt="PULSE STRENGTH CLUB fitness website" />
             <div class="project-overlay">
               <span class="overlay-title">PULSE STRENGTH CLUB</span>
             </div>
@@ -255,13 +314,17 @@
         </a>
         
         <div class="project-content">
-          <h3 class="project-name">PULSE STRENGTH CLUB</h3>
+          <h3 class="project-name">PULSE STRENGTH CLUB<span class="micro-hover-line" aria-hidden="true"></span></h3>
           <p class="project-role">Design & Frontend</p>
           <p class="project-description">A fitness platform designed for clarity and usability, featuring onboarding flows, class scheduling, and booking. The interface prioritizes function without sacrificing visual discipline.</p>
+          <div class="project-vibe">Warm, Tactile, Modern</div>
+          <div class="project-key-focus"><strong>Key Focus:</strong> Responsive layouts, brand-consistent color palettes, and menu architecture.</div>
+          <div class="project-vibe">Bold, Energetic, Functional</div>
+          <div class="project-key-focus"><strong>Key Focus:</strong> User flow optimization, dashboard design, and bold typography.</div>
           
           <div class="project-links">
-            <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">View Live</a>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">GitHub</a>
+            <a href="https://pulse-strength-gym.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link">View Live<span class="micro-hover-line" aria-hidden="true"></span></a>
+            <a href="https://github.com/mohammedshaibaaz/pulse-strength-gym" target="_blank" rel="noopener noreferrer" class="project-link">GitHub<span class="micro-hover-line" aria-hidden="true"></span></a>
           </div>
         </div>
       </article>
@@ -272,24 +335,30 @@
   <!-- ============================================
        SERVICES SECTION
        ============================================ -->
+  <!-- Section Threshold Line: Work Focus -->
+  <div class="section-threshold-line" aria-hidden="true"></div>
   <section class="services" id="focus">
     <div class="services-container">
       
       <div class="section-header">
         <h2>Work Focus</h2>
+        <div class="work-focus-divider" aria-hidden="true"></div>
       </div>
 
       <div class="services-grid">
         
         <article class="service-card">
+          <span class="service-number">01</span>
           <h3>Brand & Product Websites</h3>
           <p>Purpose-built websites that communicate identity clearly and support long-term growth.</p>
         </article>
         <article class="service-card">
+          <span class="service-number">02</span>
           <h3>Landing Pages</h3>
           <p>Focused, high-impact pages designed to guide attention and support conversion without distraction.</p>
         </article>
         <article class="service-card">
+          <span class="service-number">03</span>
           <h3>Website Updates & Redesigns</h3>
           <p>Existing websites refined through improved structure, performance, and visual clarity.</p>
         </article>
@@ -301,6 +370,8 @@
   <!-- ============================================
        PROCESS SECTION
        ============================================ -->
+  <!-- Section Threshold Line: Approach (Process) -->
+  <div class="section-threshold-line" aria-hidden="true"></div>
   <section class="process">
     <div class="process-container">
       
@@ -308,12 +379,16 @@
         <h2>Approach</h2>
       </div>
       <p class="section-intro">Work follows a structured process designed to reduce friction and maintain quality at every stage.</p>
+      <div style="position:relative;">
+        <div class="process-timeline-wrapper">
+          <div class="process-timeline-line" aria-hidden="true"></div>
+          <!-- Decorative curved connector -->
+          <svg class="process-connector" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+            <path id="process-connector" d="M20,80 C320,20 880,140 1180,80" fill="none" />
+          </svg>
+        </div>
+      </div>
       <div class="process-steps">
-        <!-- Decorative curved connector -->
-        <svg class="process-connector" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
-          <path id="process-connector" d="M20,80 C320,20 880,140 1180,80" fill="none" />
-        </svg>
-        
         <div class="process-step">
           <div class="step-number">01</div>
           <h3 class="step-title">Discovery</h3>
@@ -345,20 +420,21 @@
   <!-- ============================================
        ABOUT SECTION
        ============================================ -->
+  <!-- Section Threshold Line: About -->
+  <div class="section-threshold-line" aria-hidden="true"></div>
   <section id="about" class="about">
+    <div class="vertical-grid-spine" aria-hidden="true"></div>
     <div class="about-container">
+      <div class="about-framing about-framing-top-left" aria-hidden="true"></div>
+      <div class="about-framing about-framing-bottom-right" aria-hidden="true"></div>
       
       <div class="section-header"><h2>About</h2></div>
       <div class="about-content">
-        <div class="about-figure" aria-hidden="true">
-          <svg viewBox="0 0 120 120" role="img" aria-label="" focusable="false">
-            <circle cx="60" cy="40" r="22" fill="none" stroke-width="2" />
-            <path d="M20 110 C35 80, 85 80, 100 110" fill="none" stroke-width="2" />
-          </svg>
-        </div>
         <div class="about-text">
-          <p>Design and development are treated as complementary disciplines, not separate steps. The result is websites that feel natural to use, load quickly, and remain relevant over time.</p>
-          <p>The work emphasizes clarity over trends and decisions over decoration.</p>
+          <p>Good interfaces don’t just look clean — they feel deliberate. That idea shapes the way I approach frontend development, where I focus on building responsive and visually balanced web experiences that work smoothly across devices.</p>
+          <p>Much of my work revolves around designing and developing concept brand websites and modern landing webpages. I focus on layout, typography, and interaction, making sure every element has a purpose and the interface feels consistent rather than overdone.</p>
+          <p>Outside of work, I enjoy watching movies and anime, and I regularly play chess. Both influence how I think — from visual storytelling and pacing to planning, structure, and decision-making — and these ways of thinking often reflect in my design and problem-solving process.</p>
+          <p>I’m currently open to freelance work and frontend internships, and I’m keen on contributing to real-world projects where I can add value while continuing to improve my craft.</p>
         </div>
       </div>
 
@@ -368,33 +444,76 @@
   <!-- ============================================
        FINAL CTA / CONTACT SECTION
        ============================================ -->
+  <!-- Section Threshold Line: Contact (Final CTA) -->
+  <div class="section-threshold-line" aria-hidden="true"></div>
   <section id="contact" class="final-cta">
-    <div class="final-cta-container">
-      <h2 class="final-cta-headline">Let's Work Together</h2>
-      <p class="final-cta-text">If you have a project in mind or just want to explore what's possible, reach out. I'd be happy to discuss how we can work together.</p>
-      <a href="mailto:mohdshabaaz1919@gmail.com" class="btn btn-primary btn-large">Start a Conversation</a>
+    <div class="contact-arch-horizon"></div>
+    <div class="contact-arch-grid">
+      <div class="contact-arch-left">
+        <h2 class="contact-arch-headline">Get in Touch
+          <span class="contact-status-indicator">
+            <span class="contact-status-dot"></span>
+            <span class="contact-status-ping"></span>
+          </span>
+        </h2>
+      </div>
+      <div class="contact-arch-divider"></div>
+      <div class="contact-arch-right">
+        <div class="contact-arch-desc">
+          <p class="contact-arch-text">If you're looking to improve a website, build a new page, or discuss a frontend opportunity, feel free to reach out. I'm always open to meaningful conversations and potential collaborations.</p>
+          <p class="contact-arch-text contact-arch-text-secondary">Whether it's a freelance project, an internship opportunity, or a quick question, I'll do my best to respond promptly.</p>
+        </div>
+        <div class="contact-arch-list">
+          <div class="contact-arch-row">
+            <span class="contact-arch-label"><span class="contact-icon email-icon"></span>Email</span>
+            <a href="mailto:mohdshabaaz1919@gmail.com" class="contact-arch-link">mohdshabaaz1919@gmail.com</a>
+          </div>
+          <div class="contact-arch-row">
+            <span class="contact-arch-label"><span class="contact-icon linkedin-icon"></span>LinkedIn</span>
+            <a href="https://www.linkedin.com/in/mohammed-shaibaaz-uddin" target="_blank" rel="noopener noreferrer" class="contact-arch-link">Mohammed Shaibaaz Uddin <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="contact-arch-row">
+            <span class="contact-arch-label"><span class="contact-icon resume-icon"></span>Resume</span>
+            <a href="./resume.pdf" class="contact-arch-link" download="Mohammed_Shaibaaz_Resume.pdf">View Resume <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============================================
-       FOOTER
-       ============================================ -->
-  <footer class="footer">
+    <!-- ============================================
+      FOOTER
+      ============================================ -->
+    <div class="footer-outer-divider"></div>
+    <footer class="footer">
     <div class="footer-container">
-      <div class="footer-info">
-        <p class="footer-name">Mohammed Shaibaaz</p>
-        <p class="footer-title">Frontend Developer — Design & Code</p>
+      <div class="footer-grid">
+        <!-- Left: Name & Tagline -->
+        <div class="footer-col footer-col-left">
+          <p class="footer-name">Mohammed Shaibaaz</p>
+          <p class="footer-title">Frontend Developer — Design & Code</p>
+        </div>
+        <!-- Center: Quick Links -->
+        <div class="footer-col footer-col-center">
+          <a href="#work" class="footer-quick-link">Work</a>
+          <a href="#focus" class="footer-quick-link">Focus</a>
+          <a href="#about" class="footer-quick-link">About</a>
+        </div>
+        <!-- Right: Connect & Resources -->
+        <div class="footer-col footer-col-right">
+          <div class="footer-connect-group">
+            <span class="footer-group-label">Connect</span>
+            <a href="https://www.linkedin.com/in/mohammed-shaibaaz-uddin" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+            <a href="https://github.com/mohammedshaibaaz" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+            <a href="mailto:mohdshabaaz1919@gmail.com" class="footer-link">Email</a>
+          </div>
+          <div class="footer-resources-group">
+            <span class="footer-group-label">Resources</span>
+            <a href="./resume.pdf" class="contact-arch-link" download="Mohammed_Shaibaaz_Resume.pdf">Resume</a>
+          </div>
+        </div>
       </div>
-      
-      <div class="footer-contact">
-        <a href="mailto:mohdshabaaz1919@gmail.com" class="footer-link">mohdshabaaz1919@gmail.com</a>
-      </div>
-      
-      <div class="footer-meta-links">
-        <a href="/PRIVACY.md" class="footer-meta-link">Privacy</a>
-        <a href="https://github.com/mohammedshaibaaz" target="_blank" rel="noopener noreferrer" class="footer-meta-link">GitHub</a>
-      </div>
-      
+      <div class="footer-divider"></div>
       <p class="footer-copyright">© 2026 Mohammed Shaibaaz. All rights reserved.</p>
     </div>
   </footer>
@@ -407,14 +526,16 @@
   </div>
 
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6ZG3MJT4GL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'G-6ZG3MJT4GL');
   </script>
 
   <script src="scripts.js" defer></script>
+  <script src="contact-dynamic-line.js" defer></script>
+  <script src="contact-cta-anim.js" defer></script>
 </body>
 </html>
