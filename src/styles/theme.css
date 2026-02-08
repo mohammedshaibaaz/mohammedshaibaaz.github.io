@@ -1,0 +1,245 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  
+  /* Industrial Obsidian color system - High-End Engineering Studio */
+  --obsidian: #050505;
+  --obsidian-light: #0a0a0a;
+  --obsidian-elevated: #111111;
+  
+  --background: #050505;
+  --background-elevated: #0a0a0a;
+  --background-subtle: #111111;
+  
+  --foreground: #f5f5f5;
+  --primary-text: #f5f5f5;
+  --secondary-text: #a0a0a0;
+  --tertiary-text: #6a6a6a;
+  
+  /* Refined accent palette - Pure White & Warm White variations */
+  --silver: #c0c0c0;
+  --silver-light: #d8d8d8;
+  --silver-dark: #a0a0a0;
+  
+  --pure-white: #ffffff;
+  --warm-white: #fafafa;
+  --cool-white: #f0f0f0;
+  
+  /* Primary accent - Pure White (used sparingly for emphasis) */
+  --accent: #ffffff;
+  --accent-hover: #fafafa;
+  --accent-muted: rgba(255, 255, 255, 0.1);
+  --accent-glow: rgba(255, 255, 255, 0.3);
+  
+  /* Secondary accent - Warm White */
+  --secondary-accent: #fafafa;
+  --secondary-accent-hover: #ffffff;
+  
+  /* Glassmorphism - Industrial grade */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 20px;
+  
+  --border: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.15);
+  
+  /* Card colors with subtle glassmorphism */
+  --card-bg: rgba(17, 17, 17, 0.5);
+  --card-bg-hover: rgba(26, 26, 26, 0.7);
+  
+  --input: transparent;
+  --input-background: rgba(255, 255, 255, 0.03);
+  
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  
+  --radius: 1rem;
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.5rem;
+  
+  /* Legacy compatibility */
+  --card: var(--card-bg);
+  --card-foreground: var(--foreground);
+  --popover: var(--background-elevated);
+  --popover-foreground: var(--foreground);
+  --primary: var(--accent);
+  --primary-foreground: var(--obsidian);
+  --secondary: var(--background-subtle);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--background-subtle);
+  --muted-foreground: var(--secondary-text);
+  --accent-color: var(--accent);
+  --accent-foreground: var(--obsidian);
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --switch-background: #4b5563;
+  --ring: var(--accent);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+  }
+
+  html {
+    font-size: var(--font-size);
+    scroll-behavior: smooth;
+  }
+
+  /* High-End Engineering Studio typography system */
+  h1 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: var(--font-weight-normal);
+    font-style: italic;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: var(--font-weight-normal);
+    font-style: italic;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+
+  h3 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: var(--font-weight-normal);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  h4 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: var(--font-weight-normal);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+    font-family: 'Geist Mono', monospace;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+
+  /* Monospace for technical elements */
+  .mono {
+    font-family: 'Geist Mono', 'Courier New', monospace;
+  }
+  
+  /* Smooth scrolling for anchor links */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Industrial Glassmorphism utility classes */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-pill {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Performance optimizations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .gpu-accelerated {
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Borderless cards with depth via shadow */
+  .borderless-card {
+    background: rgba(17, 17, 17, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: none;
+    box-shadow: 
+      0 0 0 0.5px rgba(255, 255, 255, 0.05),
+      0 8px 32px rgba(0, 0, 0, 0.6);
+  }
+
+  .borderless-card:hover {
+    box-shadow: 
+      0 0 0 0.5px rgba(255, 255, 255, 0.1),
+      0 0 40px rgba(255, 255, 255, 0.08),
+      0 12px 48px rgba(0, 0, 0, 0.7);
+  }
+}
